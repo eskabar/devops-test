@@ -1,0 +1,43 @@
+{
+  "executionRoleArn": "$EXECUTION_ROLE_ARN",
+  "containerDefinitions": [
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": { 
+          "awslogs-group" : "$CLOUDWATCH_LOG_GROUP",
+          "awslogs-region": "$AWS_REGION",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "containerPort": 5000
+        }
+      ],
+      "secrets": [
+        {
+          "name": "REDIS_URL",
+          "valueFrom": "arn:aws:ssm:us-east-2:264326320119:parameter/webapp-default/redis"
+        },
+        {
+          "name": "MONGODB_URI",
+          "valueFrom": "arn:aws:ssm:us-east-2:264326320119:parameter/webapp-default/mongo"
+        }
+      ],
+      "image": "$BUILD_VERSION_CONTAINER_URI",
+      "essential": true,
+      "name": "webapp"
+    }
+  ],
+  "memory": "512",
+  "taskRoleArn": "$TASK_ROLE_ARN",
+  "family": "$FAMILY",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256"
+}

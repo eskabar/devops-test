@@ -1,0 +1,29 @@
+[
+  {
+    "name": "${container_name}",
+    "family": "${family}",
+    "taskRoleArn": "${task_role_arn}",
+    "executionRoleArn": "${execution_role_arn}",
+    "networkMode": "awsvpc",
+    "image": "${image}:latest",
+    "cpu": ${cpu},
+    "memory": ${memory},
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": ${port},
+        "hostPort": ${port},
+        "protocol": "tcp"
+      }
+    ],
+    "requiresCompatibilities": "FARGATE",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": { 
+        "awslogs-group" : "${cloudwatch_log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]

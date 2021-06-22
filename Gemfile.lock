@@ -88,7 +88,7 @@ GEM
     mustermann-grape (1.0.1)
       mustermann (>= 1.0.0)
     nio4r (2.5.7)
-    nokogiri (1.11.3-x86_64-darwin)
+    nokogiri (1.11.3-x86_64-linux)
       racc (~> 1.4)
     puma (5.2.2)
       nio4r (~> 2.0)
@@ -132,6 +132,7 @@ GEM
 PLATFORMS
   x86_64-darwin-19
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   activesupport
